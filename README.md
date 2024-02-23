@@ -1,6 +1,8 @@
 ﻿# Mission_YangDongHwa_ShoppingMall
 ## Property
-src/main/resources 의 application.yaml 설정에있는 spring.profiles.active: home으로 된걸 git으로 바꾸고 application-git.yaml에 키값을 넣고 실행한다.
+src/main/resources 의 application.yaml 설정에있는 spring.profiles.active: home으로 된걸 git으로 바꾸고 
+
+application-git.yaml에 키값을 넣고 실행한다.
 
 ## DB 구조도
  ![db설계1](https://github.com/ydh511/Mission_YangDongHwa_ShoppingMall/assets/70869505/a434d837-8e04-4f8d-92f9-8388358be8c4)

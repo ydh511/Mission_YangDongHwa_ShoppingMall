@@ -21,5 +21,5 @@ ncp:
     client-id: <client-id>
     client-secret: <client-secret>
 
-    api-access: <access-key>2
+    api-access: <access-key>3
     api-secret: <secret-key>

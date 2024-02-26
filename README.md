@@ -5,7 +5,7 @@ src/main/resources 의 application.yaml 설정에있는 spring.profiles.active: 
 application-git.yaml에 자신의 키값을 넣고 실행한다.
 
 ## DB 구조도
- ![db설계1](https://github.com/ydh511/Mission_YangDongHwa_ShoppingMall/assets/70869505/a434d837-8e04-4f8d-92f9-8388358be8c4)
+ ![db설계2](https://github.com/ydh511/Mission_YangDongHwa_ShoppingMall/assets/70869505/4ebdeda4-3069-486e-b3f9-38d354dbe9e0)
 
 - businessGrate : 0~3까지 / 0: 비활성, 1: 일반, 2: 사업자, 3: 관리자
 - transactionStatus : 0~1까지 / 0: 판매중, 1: 구매제안중

@@ -8,3 +8,6 @@ ncp:
 
     api-access: <access-key>
     api-secret: <secret-key>
+
+jwt:
+  secret: aaaabbbsdifqbvaesoioegwaaaabbbsdifqbvaesoioegwaaaabbbsdifqbvaes

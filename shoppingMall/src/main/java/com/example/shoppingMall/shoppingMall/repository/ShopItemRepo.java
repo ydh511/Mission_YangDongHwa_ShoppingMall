@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ShopItemRepo extends JpaRepository<ShopItem, Long> {
     List<ShopItem> findAllById(Long id);
-
+    List<ShopItem> findAllByShopIdAndPriceBetween(Long id, Integer minPrice, Integer maxPrice);
 }

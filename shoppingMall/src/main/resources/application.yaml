@@ -17,4 +17,4 @@ spring:
       org:
         thymeleaf: DEBUG
   profiles:
-    active: git
+    active: home

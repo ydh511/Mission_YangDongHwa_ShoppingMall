@@ -260,6 +260,21 @@ public class ShopService {
         }
         return dtos;
     }
+    // 쇼핑몰 아이템리스트 가격범위검색으로 보기, 전체가능
+    public List<ShopItemDto> viewItemListByPrice(Long shopId, Integer minPrice, Integer maxPrice){
+        // 개설된 쇼핑몰만 보여줌
+        ShoppingMall shop = shopRepo.findById(shopId).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (shop.getShopStatus() != 3)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        List<ShopItem> shopItems = itemRepo.findAllByShopIdAndPriceBetween(shopId,minPrice,maxPrice);
+        List<ShopItemDto> dtos = new ArrayList<>();
+        for (ShopItem item : shopItems){
+            dtos.add(ShopItemDto.fromEntity(item));
+        }
+        return dtos;
+    }
 
     // 쇼핑몰 물건 수정하기, 해당 사업자만 가능
     public ShopItemDto updateItem(

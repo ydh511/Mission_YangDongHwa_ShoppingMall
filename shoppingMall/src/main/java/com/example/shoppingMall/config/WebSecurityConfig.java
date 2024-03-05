@@ -41,7 +41,7 @@ public class WebSecurityConfig {
                                 "/shoppingmall/**/items",
                                 "/shoppingmall/view-itemcate",
                                 "/shoppingmall/view-itemcate/**",
-                                "/shoppingmall/**/items/**"
+                                "/shoppingmall/**/cate/**"
                                 )
                         .permitAll()
 

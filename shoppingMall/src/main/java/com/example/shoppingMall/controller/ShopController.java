@@ -127,7 +127,7 @@ public class ShopController {
     }
 
     // 쇼핑몰 아이템 리스트 카테고리 검색으로 보기, 전체가능
-    @GetMapping("/{shopId}/items/{cateCode}")
+    @GetMapping("/{shopId}/cate/{cateCode}")
     public List<ShopItemDto> viewItemListByCate(
             @PathVariable("shopId")
             Long shopId,
@@ -136,6 +136,19 @@ public class ShopController {
     ){
         return  shopService.viewItemListByCate(shopId,cateCode);
     }
+    // 쇼핑몰 아이템 리스트 가격 검색으로 보기, 전체가능
+    @GetMapping("/{shopId}/price")
+    public List<ShopItemDto> viewItemListByPrice(
+            @PathVariable("shopId")
+            Long shopId,
+            @RequestParam("minPrice")
+            Integer minPrice,
+            @RequestParam("maxPrice")
+            Integer maxPrice
+    ){
+        return  shopService.viewItemListByPrice(shopId,minPrice,maxPrice);
+    }
+
 
     // 아이템 수정하기, 해당 사업자만 가능
     @PostMapping("/{shopId}/update-item/{itemId}")

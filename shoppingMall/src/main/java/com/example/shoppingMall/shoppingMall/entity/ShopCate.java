@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class ShopCate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,9 +15,11 @@ public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userId;
+    //@Column(name = "usernames", nullable = false, unique = true)
+    private String username;
     private String password;
-
+    @Setter
+    private boolean certification;
     @Setter
     private String email;
     @Setter
@@ -28,9 +30,33 @@ public class User extends BaseEntity {
     private Integer age;
     @Setter
     private String phone;
+
+    // ROLE_INACTIVE: 비활성 사용자, ROLE_ACTIVE: 활성 사용자
+    // ROLE_BUSINESS: 사업자, ROLE_ADMIN: 관리자
     @Setter
-    private Integer businessGrade;
+    private String authority;
     @Setter
     private String businessNumber;
     private String roadAddress;
+
+    public void updateInactiveUser(String password){
+        this.password = password;
+    }
+    public void updateActiveUser(
+            String password,
+            String email,
+            String nickname,
+            String personName,
+            Integer age,
+            String phone,
+            String roadAddress
+    ){
+        this.password = password;
+        this.email = email;
+        this.nickname = nickname;
+        this.personName = personName;
+        this.age = age;
+        this.phone = phone;
+        this.roadAddress = roadAddress;
+    }
 }

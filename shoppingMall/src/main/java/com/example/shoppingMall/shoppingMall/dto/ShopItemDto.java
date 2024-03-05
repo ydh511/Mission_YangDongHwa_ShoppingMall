@@ -4,6 +4,8 @@ import com.example.shoppingMall.shoppingMall.entity.ShopItem;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Getter
 @Slf4j
 @Builder
@@ -17,9 +19,9 @@ public class ShopItemDto {
     private String itemName;
     private String comment;
     private Integer price;
-    private Long cateId;
+    private List<Long> cateId;
 
-    public static ShopItemDto fromentity(ShopItem entity){
+    public static ShopItemDto fromEntity(ShopItem entity){
         return ShopItemDto.builder()
                 .id(entity.getId())
                 .shopId(entity.getShopId())
@@ -27,7 +29,6 @@ public class ShopItemDto {
                 .itemName(entity.getItemName())
                 .comment(entity.getComment())
                 .price(entity.getPrice())
-                .cateId(entity.getCateId())
                 .build();
     }
 }

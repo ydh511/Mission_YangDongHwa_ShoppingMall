@@ -12,14 +12,22 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 public class ShopItemOfferDto {
     private Long id;
-    private Long UserId;
-    private Long ItemId;
+    private Long offerId;
+    private Long offeredId;
+    private Long itemId;
+    private Integer stock;
+    private Integer price;
+    private Integer status;
 
     public static ShopItemOfferDto fromEntity(ShopItemOffer entity){
         return ShopItemOfferDto.builder()
                 .id(entity.getId())
-                .UserId(entity.getUserId())
-                .ItemId(entity.getItemId())
+                .offerId(entity.getOfferId())
+                .offeredId(entity.getOfferedId())
+                .itemId(entity.getItemId())
+                .stock(entity.getStock())
+                .price(entity.getPrice())
+                .status(entity.getStatus())
                 .build();
     }
 }

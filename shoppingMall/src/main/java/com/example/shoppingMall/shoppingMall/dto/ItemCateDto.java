@@ -1,5 +1,6 @@
 package com.example.shoppingMall.shoppingMall.dto;
 
+import com.example.shoppingMall.shoppingMall.entity.ItemCate;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,11 +16,11 @@ public class ItemCateDto {
     private Long cateParent;
     private Integer tier;
 
-    public static ItemCateDto fromEntity(ItemCateDto entity){
+    public static ItemCateDto fromEntity(ItemCate entity){
         return ItemCateDto.builder()
-                .id(entity.getId())
-                .cateName(entity.cateName)
-                .cateParent(entity.cateParent)
+                .id(entity.getCateCode())
+                .cateName(entity.getCateName())
+                .cateParent(entity.getCateParent())
                 .build();
     }
 }

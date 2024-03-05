@@ -13,7 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UsedItemOfferDto {
     private Long id;
 
-    private Long userId;
+    private Long offerId;
+    private Long offeredId;
     private Long itemId;
     private Integer offerStatus;
 
@@ -21,7 +22,8 @@ public class UsedItemOfferDto {
         return UsedItemOfferDto.builder()
                 .id(entity.getId())
                 .itemId(entity.getItemId())
-                .userId(entity.getUserId())
+                .offerId(entity.getOfferId())
+                .offeredId(entity.getOfferedId())
                 .offerStatus(entity.getOfferStatus())
                 .build();
     }

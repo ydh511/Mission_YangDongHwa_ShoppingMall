@@ -1,6 +1,6 @@
-package com.example.shoppingMall.jwt;
+package com.example.shoppingMall.config;
 
-import com.example.shoppingMall.controller.CustomUserDetails;
+import com.example.shoppingMall.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,21 +9,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 @Slf4j
-public class JwtTokenFilter extends OncePerRequestFilter {
-    private final JwtTokenUtils jwtTokenUtils;
+public class TokenFilter extends OncePerRequestFilter {
+    private final SecurityUtils SecurityUtils;
+    private final UserDetailsServiceImpl service;
 
-    public JwtTokenFilter(
-            JwtTokenUtils jwtTokenUtils
+    public TokenFilter(
+            SecurityUtils SecurityUtils,
+            UserDetailsServiceImpl service
     ) {
-        this.jwtTokenUtils = jwtTokenUtils;
+        this.SecurityUtils = SecurityUtils;
+        this.service = service;
     }
 
     @Override
@@ -36,19 +40,22 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.split(" ")[1];
-            if (jwtTokenUtils.validate(token)){
+            if (SecurityUtils.validate(token)){
                 SecurityContext context
                         = SecurityContextHolder.createEmptyContext();
                 // Claims에 저장된 사용자 이름을 회수
-                String username = jwtTokenUtils
+                String username = SecurityUtils
                         .parseClaims(token)
                         .getSubject();
+                UserDetails userDetails = service.loadUserByUsername(username);
+                for (GrantedAuthority authority : userDetails.getAuthorities()) {
+                    log.info("authority: {}", authority.getAuthority());
+                }
                 AbstractAuthenticationToken authentication
                         = new UsernamePasswordAuthenticationToken(
-                        CustomUserDetails.builder()
-                                .userId(username)
-                                .build(),
-                        token, new ArrayList<>());
+                        userDetails,
+                        token,
+                        userDetails.getAuthorities());
                 context.setAuthentication(authentication);
                 SecurityContextHolder.setContext(context);
                 log.info("set security context with jwt");

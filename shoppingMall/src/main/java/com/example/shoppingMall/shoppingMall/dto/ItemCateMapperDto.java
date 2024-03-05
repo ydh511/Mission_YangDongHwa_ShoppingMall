@@ -14,11 +14,13 @@ public class ItemCateMapperDto {
     private Long id;
     private Long itemId;
     private Long cateId;
+    private Long shopId;
     public static ItemCateMapperDto fromEntity(ItemCateMapper entity){
         return ItemCateMapperDto.builder()
                 .id(entity.getId())
                 .itemId(entity.getItemId())
                 .cateId(entity.getCateId())
+                .shopId(entity.getShopId())
                 .build();
     }
 }

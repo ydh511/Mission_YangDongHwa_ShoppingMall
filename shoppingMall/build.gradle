@@ -41,6 +41,9 @@ dependencies {
 	implementation 'org.xerial:sqlite-jdbc:3.41.2.2'
 	runtimeOnly 'org.hibernate.orm:hibernate-community-dialects:6.2.4.Final'
 	runtimeOnly 'com.h2database:h2'
+
+	// https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api
+	implementation group: 'jakarta.mail', name: 'jakarta.mail-api', version: '2.1.2'
 }
 
 tasks.named('test') {

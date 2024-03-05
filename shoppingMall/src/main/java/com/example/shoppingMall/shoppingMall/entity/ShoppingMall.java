@@ -13,16 +13,34 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class ShoppingMall extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long userId;
+    //@Column(name = "shopnames", unique = true)
     private String shopName;
     private String shopIntroduce;
     private Long shopCateId;
+    //  0: 폐쇄, 1: 준비중, 2: 개설신청중, 3: 개설
+    @Setter
     private Integer shopStatus;
+    @Setter
     private String cancelReason;
+    @Setter
     private LocalDateTime lastTrans;
+
+    public void openOffer(
+            String shopName,
+            String shopIntroduce,
+            Long shopCateId,
+            Integer shopStatus
+    ){
+        this.shopName = shopName;
+        this.shopIntroduce = shopIntroduce;
+        this.shopCateId = shopCateId;
+        this.shopStatus = shopStatus;
+    }
 }

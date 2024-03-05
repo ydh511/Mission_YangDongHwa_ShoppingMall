@@ -10,11 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class ItemCateMapper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long shopId;
     private Long itemId;
     private Long cateId;
+
 }

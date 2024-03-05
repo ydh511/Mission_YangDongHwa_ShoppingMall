@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class ShopItem extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +22,19 @@ public class ShopItem extends BaseEntity {
     private String itemName;
     private String comment;
     private Integer price;
-    private Long cateId;
+
+    public void updateItem(
+            Integer stock,
+            String itemName,
+            String comment,
+            Integer price
+    ){
+        this.stock = stock;
+        this.itemName = itemName;
+        this.comment = comment;
+        this.price = price;
+    }
+    public void updateStock(Integer stock){
+        this.stock = stock;
+    }
 }
